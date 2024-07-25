@@ -14,10 +14,9 @@ export default function Navbar() {
       if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
         setIsPopupVisible(false);
       }
-    }
+    };
 
     document.addEventListener("click", handleClickOutside);
-
 
     if (!isPopupVisibile) {
       document.removeEventListener("click", handleClickOutside);
@@ -25,14 +24,14 @@ export default function Navbar() {
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
-    }
+    };
   }, [isPopupVisibile]);
 
   return (
-    <div className="flex justify-between pb-4 border-b mb-4 relative">
+    <div className="relative mb-4 flex justify-between border-b pb-4">
       <div>
         <Link href={"/"}>
-          <h1 className="text-4xl font-bold tracking-tighter text-dark">
+          <h1 className="text-dark text-4xl font-bold tracking-tighter">
             HUSH
           </h1>
         </Link>
@@ -45,7 +44,7 @@ export default function Navbar() {
         <>
           <div
             ref={popupRef}
-            className={`absolute z-30 right-0 top-20 bg-white p-6 shadow-lg rounded-md flex-col gap-2 text-right min-w-[160px] ${
+            className={`absolute right-0 top-20 z-30 min-w-[160px] flex-col gap-2 rounded-md bg-white p-6 text-right shadow-lg ${
               isPopupVisibile ? "flex" : "hidden"
             }`}
           >
@@ -70,10 +69,10 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="flex gap-2 items-center">
-            <Link
+          <div className="flex items-center gap-2">
+            {/* <Link
               href={"/create-post"}
-              className="md:flex gap-2 items-center mr-6 hidden"
+              className="mr-6 hidden items-center gap-2 md:flex"
             >
               <span>
                 <svg
@@ -92,19 +91,19 @@ export default function Navbar() {
                 </svg>
               </span>
               <span>Create New</span>
-            </Link>
+            </Link> */}
             <Image
               src={session?.user?.image || ""}
               width={36}
               height={36}
               alt="profile image"
-              className="rounded-full cursor-pointer"
+              className="cursor-pointer rounded-full"
               onClick={() => setIsPopupVisible((prev) => !prev)}
             />
           </div>
         </>
       ) : (
-        <div className="flex items-center ">
+        <div className="flex items-center">
           <Link className="btn" href={"/sign-in"}>
             Sign In
           </Link>
