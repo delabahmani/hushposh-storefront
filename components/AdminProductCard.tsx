@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type ProductProps = {
   product: {
@@ -9,21 +10,13 @@ type ProductProps = {
     description: string | null;
     price: number;
   };
-  user: {
-    name: string;
-    email: string;
-    favoriteIds: string[];
-  };
 };
 
-export default function ProductCard({ product, user }: ProductProps) {
-  const [isFaved, setIsFaved] = useState(
-    user.favoriteIds.includes(product.id) ? true : false,
-  );
+export default function AdminProductCard({ product }: ProductProps) {
+
+  const router = useRouter()
 
   const handleFav = async (id: string) => {
-    
-
     try {
       const res = await fetch("/api/products", {
         method: "PUT",
@@ -41,11 +34,11 @@ export default function ProductCard({ product, user }: ProductProps) {
       <p>{product.name}</p>
       <p>{product.description}</p>
       <p>{product.price}</p>
-      <button
-        onClick={() => {
-          handleFav(product.id);
-        }}
-      >{isFaved ? "Faved" : "not faved :("}</button>
+
+      <div className="flex items-center">
+        <button onClick={() => router.push(`/admin/${product.id}`)}>Edit</button>
+        <button>Delete</button>
+      </div>
     </div>
   );
 }

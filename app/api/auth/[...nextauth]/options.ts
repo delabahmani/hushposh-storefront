@@ -2,6 +2,7 @@ import prisma from "@/lib/prismadb";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { DefaultSession, DefaultUser } from "next-auth";
 
 const CustomPrismaAdapter = PrismaAdapter(prisma) as any;
 
@@ -13,6 +14,7 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+
   pages: {
     signIn: "/sign-in",
   },
