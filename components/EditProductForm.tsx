@@ -69,11 +69,12 @@ export default function EditProductForm({ product }: CardProps) {
           value={productInfo.price}
           min={0}
           max={1000}
+          step={0.01}
           name="price"
         />
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn">Submit</button>
         </div>
       </form>
     </div>

@@ -15,6 +15,7 @@ const config: Config = {
         lightgray: "#BCB8B1",
         offwhite: "#F4F3EE",
         coral: "#E0AFA0",
+        btnaccent: "#E2E8F0",
       }
     },
   },

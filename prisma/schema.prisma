@@ -29,6 +29,7 @@ model Product {
   name        String
   description String?
   price       Float
+  imageUrl    String?
 }
 
 model Account {
