@@ -7,6 +7,7 @@ type Props = {
   }
 }
 
+
 export default async function EditProduct({params}: Props) {
   const {id} = params
   let product;
@@ -18,6 +19,9 @@ export default async function EditProduct({params}: Props) {
     console.log(error);
   }
 
+  if (!product) {
+    return <>Product Not Found</>
+  }
 
   return <div>
     <h1>Product ID: {id}</h1>
