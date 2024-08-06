@@ -10,24 +10,15 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 
 
-type CardProps = {
-  product: {
-    id: string;
-    name: string;
-    description: string | null;
-    price: number;
-  };
-};
-
-export default function EditProductForm({ product }: CardProps) {
+export default function CreateProductForm() {
   const [imageUrl, setImageUrl] = useState("");
   const [publicId, setPublicId] = useState("");
   const router = useRouter();
 
   const [productInfo, setProductInfo] = useState({
-    name: product.name,
-    description: product.description ? product.description : null,
-    price: product.price,
+    name: "",
+    description: "",
+    price: 0,
   });
 
   const handleChange = (inputName: string, value: string) => {
@@ -44,15 +35,16 @@ export default function EditProductForm({ product }: CardProps) {
     }
 
     try {
-      const res = await fetch(`/api/products/${product.id}`, {
-        method: "PUT",
+      const res = await fetch(`/api/products`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ productInfo, imageUrl }),
       });
+
       if (res.ok) {
-        toast.success("Product edited successfully!")
+        toast.success("Product created successfully!")
         router.push("/products")
         router.refresh();
       } else {
@@ -99,7 +91,7 @@ export default function EditProductForm({ product }: CardProps) {
 
   return (
     <div>
-      <h2>Edit Product Info</h2>
+      <h2>Create Product</h2>
       <form
         className="flex flex-col gap-2 bg-slate-400 p-10"
         action=""
@@ -110,6 +102,7 @@ export default function EditProductForm({ product }: CardProps) {
           type="text"
           value={productInfo.name}
           name="name"
+          placeholder="Product Name"
         />
 
         <CldUploadButton
@@ -157,6 +150,7 @@ export default function EditProductForm({ product }: CardProps) {
           type="text"
           value={productInfo.description || ""}
           name="description"
+          placeholder="Product Description"
         />
         <input
           onChange={(e) => handleChange(e.target.name, e.target.value)}
@@ -166,6 +160,7 @@ export default function EditProductForm({ product }: CardProps) {
           max={1000}
           step={0.01}
           name="price"
+          placeholder="Product Price"
         />
 
         <div>
@@ -177,3 +172,5 @@ export default function EditProductForm({ product }: CardProps) {
     </div>
   );
 }
+
+

@@ -5,13 +5,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 
 export async function POST(req: Request) {
-  const { name, description, price } = await req.json();
+  const { productInfo, imageUrl } = await req.json();
   try {
     const postProduct = await prisma.product.create({
       data: {
-        name,
-        description,
-        price,
+        name: productInfo.name,
+        description: productInfo.description,
+        price: parseFloat(productInfo.price),
+        imageUrl,
       },
     });
 

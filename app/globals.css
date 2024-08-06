@@ -15,3 +15,4 @@ h1 {
 .btn {
   @apply bg-btnaccent font-medium rounded-md px-4 py-2 transition hover:scale-110;
 }
+

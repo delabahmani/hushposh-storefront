@@ -54,6 +54,7 @@ export default function AdminProductCard({ product }: ProductProps) {
   return (
     <div>
       <p>{product.name}</p>
+      
       <p>{product.description}</p>
       <p>{formatPrice(product.price)}</p>
 

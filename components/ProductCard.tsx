@@ -1,6 +1,7 @@
 "use client";
 
 import { formatPrice } from "@/utils/formatPrice";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -10,6 +11,7 @@ type ProductProps = {
     name: string;
     description: string | null;
     price: number;
+    imageUrl: string;
   };
   user: {
     name: string;
@@ -35,8 +37,8 @@ export default function ProductCard({ product, user }: ProductProps) {
       });
 
       if (res.ok) {
-        setIsFaved(!isFaved)
-        router.push("/products")
+        setIsFaved(!isFaved);
+        router.push("/products");
         router.refresh();
       }
     } catch (error) {
@@ -51,8 +53,34 @@ export default function ProductCard({ product, user }: ProductProps) {
         </h5>
       </div>
 
+      <div>
+      {product.imageUrl ? (
+        <div>
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            width={150}
+            height={150}
+            className="rounded-md object-center flex"
+          />
+        </div>
+      ) : (
+        <div>
+        <Image
+          src={"/assets/thumbnail-placeholder.png"}
+          alt="No image available"
+          width={150}
+          height={150}
+          className="rounded-md  object-center flex"
+        />
+        </div>
+      )}
+      </div>
+
       <div className="flex items-center justify-between">
-        <span className="text-lg font-bold text-black">{formatPrice(product.price)}</span>
+        <span className="text-lg font-bold text-black">
+          {formatPrice(product.price)}
+        </span>
         <button
           onClick={() => {
             handleFav(product.id);

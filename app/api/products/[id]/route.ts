@@ -9,7 +9,7 @@ export async function PUT(
 ) {
   const { id } = params;
   let session = getServerSession(authOptions);
-  const { productInfo } = await req.json();
+  const { productInfo, imageUrl } = await req.json();
 
   try {
     const updatedProduct = await prisma.product.update({
@@ -18,6 +18,7 @@ export async function PUT(
         name: productInfo.name,
         description: productInfo.description || null,
         price: productInfo.price,
+        imageUrl,
       },
     });
     return NextResponse.json(updatedProduct);
