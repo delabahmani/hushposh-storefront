@@ -40,6 +40,10 @@ export default function Navbar() {
         </p>
       </div>
 
+
+
+      <div className="justify-between flex items-center gap-40 ">
+      <Link href={'/products'} className="uppercase font-semibold hover:border-b-[1px] hover:scale-105 transition ">Products</Link>
       {status === "authenticated" ? (
         <>
           <div
@@ -53,16 +57,9 @@ export default function Navbar() {
             <Link
               onClick={() => setIsPopupVisible(false)}
               className="hover:underline"
-              href={"/dashboard"}
+              href={"/favorites"}
             >
-              Dashboard
-            </Link>
-            <Link
-              onClick={() => setIsPopupVisible(false)}
-              className="hover:underline"
-              href={"/create-post"}
-            >
-              Create Post
+              My Favorites
             </Link>
             <button onClick={() => signOut()} className="btn">
               Sign Out
@@ -70,28 +67,6 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* <Link
-              href={"/create-post"}
-              className="mr-6 hidden items-center gap-2 md:flex"
-            >
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  />
-                </svg>
-              </span>
-              <span>Create New</span>
-            </Link> */}
             <Image
               src={session?.user?.image || ""}
               width={36}
@@ -109,6 +84,7 @@ export default function Navbar() {
           </Link>
         </div>
       )}
+      </div>
     </div>
   );
 }

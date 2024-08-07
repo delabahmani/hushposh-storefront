@@ -4,11 +4,10 @@ import {
   CldUploadButton,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
-
 
 type CardProps = {
   product: {
@@ -38,8 +37,8 @@ export default function EditProductForm({ product }: CardProps) {
     e.preventDefault();
 
     if (!productInfo.name || !productInfo.price) {
-      const errorMessage = "Title and price are required!"
-      toast.error(errorMessage)
+      const errorMessage = "Title and price are required!";
+      toast.error(errorMessage);
       return;
     }
 
@@ -52,11 +51,11 @@ export default function EditProductForm({ product }: CardProps) {
         body: JSON.stringify({ productInfo, imageUrl }),
       });
       if (res.ok) {
-        toast.success("Product edited successfully!")
-        router.push("/products")
+        toast.success("Product edited successfully!");
+        router.push("/products");
         router.refresh();
       } else {
-        toast.error("Something went wrong!")
+        toast.error("Something went wrong!");
       }
     } catch (error) {
       console.log(error);
@@ -166,6 +165,7 @@ export default function EditProductForm({ product }: CardProps) {
           max={1000}
           step={0.01}
           name="price"
+          inputMode="decimal"
         />
 
         <div>

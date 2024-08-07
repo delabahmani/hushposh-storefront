@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,14 @@ h1 {
   @apply text-2xl font-bold;
 }
 
-.btn {
-  @apply bg-btnaccent font-medium rounded-md px-4 py-2 transition hover:scale-110;
+.btn-primary {
+  @apply rounded-md bg-btnaccent px-4 py-2 font-medium transition hover:scale-110;
 }
 
+.btn-secondary {
+  @apply h-12 w-36 rounded-md bg-offwhite px-4 py-2 text-lg font-medium shadow-md transition hover:scale-110 text-black ;
+}
+
+.inpt {
+  @apply rounded-md p-3 font-medium tracking-wide focus:outline-lightbrown;
+}

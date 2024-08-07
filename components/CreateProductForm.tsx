@@ -4,7 +4,7 @@ import {
   CldUploadButton,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -91,9 +91,9 @@ export default function CreateProductForm() {
 
   return (
     <div>
-      <h2>Create Product</h2>
+      <h1 className="font-bold text-center text-3xl py-6 text-black">Create Product</h1>
       <form
-        className="flex flex-col gap-2 bg-slate-400 p-10"
+        className="flex flex-col gap-2 bg-lightgray p-10 rounded-md"
         action=""
         onSubmit={handleSubmit}
       >
@@ -103,11 +103,12 @@ export default function CreateProductForm() {
           value={productInfo.name}
           name="name"
           placeholder="Product Name"
+          className="inpt"
         />
 
         <CldUploadButton
           uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-          className={`relative mt-4 grid h-48 place-items-center rounded-md border-2 border-dotted bg-slate-100 ${imageUrl && "pointer-events-none"}`}
+          className={`relative mt-4 grid h-48 place-items-center rounded-md border-2 border-dotted bg-offwhite ${imageUrl && "pointer-events-none"}`}
           onSuccess={handleImageUpload}
         >
           <div>
@@ -138,7 +139,7 @@ export default function CreateProductForm() {
 
         {publicId && (
           <button
-            className="mb-4 w-fit rounded-md bg-red-600 px-4 py-2 font-bold text-white transition hover:scale-110"
+            className="mb-4 w-fit rounded-md bg-coral px-4 py-2 font-bold text-offwhite transition hover:scale-110"
             onClick={removeImage}
           >
             Remove Image
@@ -151,6 +152,7 @@ export default function CreateProductForm() {
           value={productInfo.description || ""}
           name="description"
           placeholder="Product Description"
+          className="inpt"
         />
         <input
           onChange={(e) => handleChange(e.target.name, e.target.value)}
@@ -161,10 +163,12 @@ export default function CreateProductForm() {
           step={0.01}
           name="price"
           placeholder="Product Price"
+          className="inpt"
+          inputMode="decimal"
         />
 
-        <div>
-          <button type="submit" className="btn">
+        <div className="flex items-center justify-center py-6">
+          <button type="submit" className="btn-secondary">
             Submit
           </button>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { User } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -11,18 +12,14 @@ type ProductProps = {
     name: string;
     description: string | null;
     price: number;
-    imageUrl: string;
+    imageUrl: string | null;
   };
-  user: {
-    name: string;
-    email: string;
-    favoriteIds: string[];
-  };
+  user: User | null;
 };
 
 export default function ProductCard({ product, user }: ProductProps) {
   const [isFaved, setIsFaved] = useState(
-    user.favoriteIds.includes(product.id) ? true : false,
+    user?.favoriteIds.includes(product.id) ? true : false,
   );
   const router = useRouter();
 
@@ -38,7 +35,6 @@ export default function ProductCard({ product, user }: ProductProps) {
 
       if (res.ok) {
         setIsFaved(!isFaved);
-        router.push("/products");
         router.refresh();
       }
     } catch (error) {
