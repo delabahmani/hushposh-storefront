@@ -40,50 +40,62 @@ export default function Navbar() {
         </p>
       </div>
 
+      <div className="flex items-center justify-between gap-10">
+        <Link
+          href="https://www.amazon.ca/s?me=AFRDVUH6BH6WA&marketplaceID=A2EUQ1WTGCTBG2"
+          target="_blank"
+          className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
+        >
+          Amazon
+        </Link>
 
+        <Link
+          href={"/products"}
+          className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
+        >
+          Products
+        </Link>
 
-      <div className="justify-between flex items-center gap-40 ">
-      <Link href={'/products'} className="uppercase font-semibold hover:border-b-[1px] hover:scale-105 transition ">Products</Link>
-      {status === "authenticated" ? (
-        <>
-          <div
-            ref={popupRef}
-            className={`absolute right-0 top-20 z-30 min-w-[160px] flex-col gap-2 rounded-md bg-white p-6 text-right shadow-lg ${
-              isPopupVisibile ? "flex" : "hidden"
-            }`}
-          >
-            <div className="font-bold">{session?.user?.name}</div>
-            <div className="font-semibold">{session?.user?.email}</div>
-            <Link
-              onClick={() => setIsPopupVisible(false)}
-              className="hover:underline"
-              href={"/favorites"}
+        {status === "authenticated" ? (
+          <>
+            <div
+              ref={popupRef}
+              className={`absolute right-0 top-20 z-30 min-w-[160px] flex-col gap-2 rounded-md bg-white p-6 text-right shadow-lg ${
+                isPopupVisibile ? "flex" : "hidden"
+              }`}
             >
-              My Favorites
-            </Link>
-            <button onClick={() => signOut()} className="btn">
-              Sign Out
-            </button>
-          </div>
+              <div className="font-bold">{session?.user?.name}</div>
+              <div className="font-semibold">{session?.user?.email}</div>
+              <Link
+                onClick={() => setIsPopupVisible(false)}
+                className="hover:underline"
+                href={"/favorites"}
+              >
+                My Favorites
+              </Link>
+              <button onClick={() => signOut()} className="btn">
+                Sign Out
+              </button>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <Image
-              src={session?.user?.image || ""}
-              width={36}
-              height={36}
-              alt="profile image"
-              className="cursor-pointer rounded-full"
-              onClick={() => setIsPopupVisible((prev) => !prev)}
-            />
+            <div className="flex items-center gap-2">
+              <Image
+                src={session?.user?.image || ""}
+                width={36}
+                height={36}
+                alt="profile image"
+                className="cursor-pointer rounded-full"
+                onClick={() => setIsPopupVisible((prev) => !prev)}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center">
+            <Link className="btn" href={"/sign-in"}>
+              Sign In
+            </Link>
           </div>
-        </>
-      ) : (
-        <div className="flex items-center">
-          <Link className="btn" href={"/sign-in"}>
-            Sign In
-          </Link>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );

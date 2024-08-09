@@ -41,10 +41,18 @@ export default function CarouselProductCard({ product, user }: ProductProps) {
       console.log(error);
     }
   };
+
+  function truncateText(text: string, maxLength: number) {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  }
+
   return (
-    <div className="flex h-fit w-full flex-col justify-center rounded-lg bg-offwhite px-[2rem] pb-[2rem]">
+    <div className="flex h-fit w-full flex-col justify-center rounded-lg bg-offwhite px-2 pb-[2rem]">
       <div className="px-5 pb-5">
-        <h5 className="mt-2 text-xl font-semibold tracking-tight text-black">
+        <h5 className="mt-2 text-lg font-semibold tracking-tight text-black">
           {product.name}
         </h5>
       </div>
@@ -73,9 +81,11 @@ export default function CarouselProductCard({ product, user }: ProductProps) {
         )}
       </div>
 
-      <div className="">
-        <p className="m-0 mb-3 text-sm">{product.description}</p>
-      </div>
+      {/* <div className="">
+        <p className="m-0 mb-3 text-sm">
+          {product.description ? truncateText(product.description, 44) : ""}
+        </p>
+      </div> */}
 
       <div className="flex items-center justify-between">
         <span className="text-lg font-bold text-black">

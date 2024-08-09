@@ -20,6 +20,10 @@ h1 {
   @apply h-12 w-36 rounded-md bg-offwhite px-4 py-2 text-lg font-medium shadow-md transition hover:scale-110 text-black ;
 }
 
+.btn-accent {
+  @apply h-10 w-24 rounded-md bg-offwhite px-4 py-2 font-medium shadow-md transition hover:scale-110 text-black ;
+}
+
 .inpt {
   @apply rounded-md p-3 font-medium tracking-wide focus:outline-lightbrown;
 }

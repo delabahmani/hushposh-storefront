@@ -42,38 +42,41 @@ export default function ProductCard({ product, user }: ProductProps) {
     }
   };
   return (
-    <div className="w-full max-w-sm rounded-lg border border-gray-200 bg-offwhite shadow-lg">
-      <div className="px-5 pb-5">
-        <h5 className="text-xl font-semibold tracking-tight text-black">
+    <div className="flex w-full max-w-sm flex-col rounded-lg border border-gray-200 bg-lightgray shadow-lg">
+      <div className="px-3 pb-3 py-4">
+        <h5 className="text-xl font-semibold tracking-tight text-black ">
           {product.name}
         </h5>
       </div>
 
-      <div>
-      {product.imageUrl ? (
-        <div>
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            width={150}
-            height={150}
-            className="rounded-md object-center flex"
-          />
-        </div>
-      ) : (
-        <div>
-        <Image
-          src={"/assets/thumbnail-placeholder.png"}
-          alt="No image available"
-          width={150}
-          height={150}
-          className="rounded-md  object-center flex"
-        />
-        </div>
-      )}
+      <span className="mx-auto mb-4 w-[80%] border-b-[1px] border-b-offwhite border-opacity-40 shadow"></span>
+
+      <div className="mx-auto flex">
+        {product.imageUrl ? (
+          <div>
+            <Image
+              src={product.imageUrl}
+              alt={product.name}
+              width={150}
+              height={150}
+              className="flex w-full rounded-md object-center"
+            />
+          </div>
+        ) : (
+          <div className="relative w-[250px] h-[250px] aspect-square">
+            <Image
+              src={"/assets/image-not-available.jpg"}
+              alt="No image available"
+              fill
+              className="flex w-full h-60 rounded-md object-cover"
+            />
+          </div>
+        )}
       </div>
 
-      <div className="flex items-center justify-between">
+      <span className="mx-auto mt-5 w-[80%] border-b-[1px] border-b-offwhite border-opacity-40 shadow"></span>
+
+      <div className="my-3 flex justify-between">
         <span className="text-lg font-bold text-black">
           {formatPrice(product.price)}
         </span>

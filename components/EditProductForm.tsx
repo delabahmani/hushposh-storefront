@@ -52,7 +52,7 @@ export default function EditProductForm({ product }: CardProps) {
       });
       if (res.ok) {
         toast.success("Product edited successfully!");
-        router.push("/products");
+        router.push("/admin");
         router.refresh();
       } else {
         toast.error("Something went wrong!");

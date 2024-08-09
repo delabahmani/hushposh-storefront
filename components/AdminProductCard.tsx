@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { formatPrice } from "@/utils/formatPrice";
+import Image from "next/image";
 
 type ProductProps = {
   product: {
@@ -10,25 +11,12 @@ type ProductProps = {
     name: string;
     description: string | null;
     price: number;
+    imageUrl: string | null;
   };
 };
 
 export default function AdminProductCard({ product }: ProductProps) {
   const router = useRouter();
-
-  const handleFav = async (id: string) => {
-    try {
-      const res = await fetch("/api/products", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
@@ -52,16 +40,44 @@ export default function AdminProductCard({ product }: ProductProps) {
   };
 
   return (
-    <div>
-      <p>{product.name}</p>
-      
-      <p>{product.description}</p>
-      <p>{formatPrice(product.price)}</p>
+    <div className="flex w-full max-w-sm flex-col rounded-lg border border-gray-200 bg-lightgray shadow-lg">
+      <div className="px-3 py-4 pb-3">
+        <h5 className="text-xl font-semibold tracking-tight text-black">
+          {product.name}
+        </h5>
+      </div>
 
-      <div className="flex items-center gap-2">
+      <span className="mx-auto mb-4 w-[80%] border-b-[1px] border-b-offwhite border-opacity-40 shadow"></span>
+
+      <div className="mx-auto flex">
+        {product.imageUrl ? (
+          <div>
+            <Image
+              src={product.imageUrl}
+              alt={product.name}
+              width={150}
+              height={150}
+              className="flex w-full rounded-md object-center"
+            />
+          </div>
+        ) : (
+          <div className="relative aspect-square h-[250px] w-[250px]">
+            <Image
+              src={"/assets/image-not-available.jpg"}
+              alt="No image available"
+              fill
+              className="flex h-60 w-full rounded-md object-cover"
+            />
+          </div>
+        )}
+      </div>
+
+      <span className="mx-auto mt-5 w-[80%] border-b-[1px] border-b-offwhite border-opacity-40 shadow"></span>
+
+      <div className="flex items-center justify-center gap-10 py-5">
         <button
           onClick={() => router.push(`/admin/${product.id}`)}
-          className="btn flex items-center justify-center gap-2"
+          className="btn-accent flex items-center justify-center gap-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +97,7 @@ export default function AdminProductCard({ product }: ProductProps) {
         </button>
         <button
           onClick={handleDelete}
-          className="btn flex items-center justify-center gap-2"
+          className="btn-accent flex items-center justify-center gap-[3px]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +105,7 @@ export default function AdminProductCard({ product }: ProductProps) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-4"
+            className="size-6"
           >
             <path
               strokeLinecap="round"
