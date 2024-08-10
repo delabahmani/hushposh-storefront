@@ -21,12 +21,12 @@ export default async function () {
   }
 
   return (
-    <div className="">
-      <div className="flex justify-between py-4">
-        <h1>Admin Dashboard</h1>
+    <div>
+      <div className="flex md:justify-between py-4 gap-2 md:gap-10 ">
+        <h1 className="text-lg md:text-2xl">Admin Dashboard</h1>
         <Link
           href="/admin/create-post"
-          className="btn-primary mb-4 mr-6 hidden items-center gap-2 md:flex"
+          className="btn-primary md:mb-4 md:mr-6 flex items-center gap-2 md:text-base text-sm w-28 "
         >
           {" "}
           <span>
@@ -36,7 +36,7 @@ export default async function () {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="md:size-6 size-5"
             >
               <path
                 strokeLinecap="round"
@@ -45,11 +45,11 @@ export default async function () {
               />
             </svg>
           </span>
-          <span>Create New</span>
+          <p className="text-xs md:text-lg text-center">Create New</p>
         </Link>
       </div>
 
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-3 gap-10">
         {products?.map((itemInProducts) => {
           return <AdminProductCard product={itemInProducts} />;
         })}

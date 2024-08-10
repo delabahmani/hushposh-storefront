@@ -22,7 +22,7 @@ const ProductsPage: React.FC = async () => {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-10">
+    <div className="grid md:grid-cols-3 gap-10">
       {products?.map((product) => (
         <ProductCard product={product} key={product.id} user={user} />
       ))}

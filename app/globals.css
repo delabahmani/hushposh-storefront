@@ -13,7 +13,7 @@ h1 {
 }
 
 .btn-primary {
-  @apply rounded-md bg-btnaccent px-4 py-2 font-medium transition hover:scale-110;
+  @apply rounded-md bg-btnaccent px-4 py-2 font-medium transition hover:scale-110 ;
 }
 
 .btn-secondary {
