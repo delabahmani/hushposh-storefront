@@ -4,7 +4,7 @@ import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/options";
 
-const ProductsPage: React.FC = async () => {
+const ProductsPage = async () => {
   const session = await getServerSession(authOptions);
 
   let products;
@@ -12,7 +12,6 @@ const ProductsPage: React.FC = async () => {
 
   try {
     products = await prisma.product.findMany();
-
     user = await prisma.user.findUnique({
       where: { email: session?.user?.email as string },
       select: { name: true, email: true, favoriteIds: true },
@@ -22,7 +21,7 @@ const ProductsPage: React.FC = async () => {
   }
 
   return (
-    <div className="grid md:grid-cols-3 gap-10">
+    <div className="grid gap-10 md:grid-cols-3">
       {products?.map((product) => (
         <ProductCard product={product} key={product.id} user={user} />
       ))}

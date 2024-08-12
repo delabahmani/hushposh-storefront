@@ -3,7 +3,7 @@
 import { User } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type ProductProps = {
@@ -24,27 +24,33 @@ export default function ProductCard({ product, user }: ProductProps) {
   const router = useRouter();
 
   const handleFav = async (id: string) => {
-    try {
-      const res = await fetch("/api/products", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      });
+    if (!user) {
+      redirect('/sign-in')
+    } 
+    if (user) {
+      try {
+        const res = await fetch("/api/products", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        });
 
-      if (res.ok) {
-        setIsFaved(!isFaved);
-        router.refresh();
+        if (res.ok) {
+          setIsFaved(!isFaved);
+          router.refresh();
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    
   };
   return (
     <div className="flex w-full max-w-sm flex-col rounded-lg border border-gray-200 bg-lightgray shadow-lg">
-      <div className="px-3 pb-3 py-4">
-        <h5 className="text-xl font-semibold tracking-tight text-black ">
+      <div className="px-3 py-4 pb-3">
+        <h5 className="text-xl font-semibold tracking-tight text-black">
           {product.name}
         </h5>
       </div>
@@ -63,12 +69,12 @@ export default function ProductCard({ product, user }: ProductProps) {
             />
           </div>
         ) : (
-          <div className="relative w-[250px] h-[250px] aspect-square">
+          <div className="relative aspect-square h-[250px] w-[250px]">
             <Image
               src={"/assets/image-not-available.jpg"}
               alt="No image available"
               fill
-              className="flex w-full h-60 rounded-md object-cover"
+              className="flex h-60 w-full rounded-md object-cover"
             />
           </div>
         )}

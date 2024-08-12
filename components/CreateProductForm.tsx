@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-
 export default function CreateProductForm() {
   const [imageUrl, setImageUrl] = useState("");
   const [publicId, setPublicId] = useState("");
@@ -29,8 +28,8 @@ export default function CreateProductForm() {
     e.preventDefault();
 
     if (!productInfo.name || !productInfo.price) {
-      const errorMessage = "Title and price are required!"
-      toast.error(errorMessage)
+      const errorMessage = "Title and price are required!";
+      toast.error(errorMessage);
       return;
     }
 
@@ -44,11 +43,11 @@ export default function CreateProductForm() {
       });
 
       if (res.ok) {
-        toast.success("Product created successfully!")
-        router.push("/products")
+        toast.success("Product created successfully!");
+        router.push("/products");
         router.refresh();
       } else {
-        toast.error("Something went wrong!")
+        toast.error("Something went wrong!");
       }
     } catch (error) {
       console.log(error);
@@ -91,9 +90,11 @@ export default function CreateProductForm() {
 
   return (
     <div>
-      <h1 className="font-bold text-center text-3xl py-6 text-black">Create Product</h1>
+      <h1 className="py-6 text-center text-3xl font-bold text-black">
+        Create Product
+      </h1>
       <form
-        className="flex flex-col gap-2 bg-lightgray p-10 rounded-md"
+        className="flex flex-col gap-2 rounded-md bg-lightgray p-10"
         action=""
         onSubmit={handleSubmit}
       >
@@ -176,5 +177,3 @@ export default function CreateProductForm() {
     </div>
   );
 }
-
-

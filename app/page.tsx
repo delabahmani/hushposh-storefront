@@ -23,9 +23,13 @@ export default async function Home() {
   try {
     products = await prisma.product.findMany();
 
-    user = (await prisma.user.findUnique({
-      where: { email: session?.user?.email as string },
-    })) as User | null;
+    if (session?.user?.email) {
+      user = (await prisma.user.findUnique({
+        where: { email: session.user.email },
+      })) as User | null;
+    } else {
+      user = null;
+    }
   } catch (error) {
     console.log(error);
   }

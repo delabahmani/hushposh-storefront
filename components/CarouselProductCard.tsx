@@ -24,21 +24,27 @@ export default function CarouselProductCard({ product, user }: ProductProps) {
   const router = useRouter();
 
   const handleFav = async (id: string) => {
-    try {
-      const res = await fetch("/api/products", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      });
+    if (!user) {
+      router.push('/sign-in')
+    } 
 
-      if (res.ok) {
-        setIsFaved(!isFaved);
-        router.refresh();
-      }
+    if (user) {
+      try {
+        const res = await fetch("/api/products", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        });
+  
+        if (res.ok) {
+          setIsFaved(!isFaved);
+          router.refresh();
+        }
     } catch (error) {
       console.log(error);
+    }
     }
   };
 
