@@ -13,17 +13,25 @@ h1 {
 }
 
 .btn-primary {
-  @apply rounded-md bg-btnaccent px-4 py-2 font-medium transition hover:scale-110 ;
+  @apply rounded-md bg-btnaccent px-4 py-2 font-medium transition hover:scale-110;
 }
 
 .btn-secondary {
-  @apply h-12 w-36 rounded-md bg-offwhite px-4 py-2 text-lg font-medium shadow-md transition hover:scale-110 text-black ;
+  @apply h-12 w-36 rounded-md bg-offwhite px-4 py-2 text-lg font-medium text-black shadow-md transition hover:scale-110;
 }
 
 .btn-accent {
-  @apply h-10 w-24 rounded-md bg-offwhite px-4 py-2 font-medium shadow-md transition hover:scale-110 text-black ;
+  @apply h-10 w-24 rounded-md bg-offwhite px-4 py-2 font-medium text-black shadow-md transition hover:scale-110;
 }
 
 .inpt {
   @apply rounded-md p-3 font-medium tracking-wide focus:outline-lightbrown;
+}
+
+.carousel-button-left {
+  @apply top-[50%] left-0 z-10 md:flex hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md md:absolute hover:scale-110 transition ;
+}
+
+.carousel-button-right {
+  @apply top-[50%] right-0 z-10 md:flex hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md md:absolute hover:scale-110 transition ;
 }

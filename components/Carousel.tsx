@@ -20,10 +20,12 @@ export default function Carousel({ products, user }: CarouselProps) {
     useSpringCarousel({
       itemsPerSlide: 3,
       withLoop: true,
+      gutter: 26,
+      startEndGutter: 20,
       items: products.map((product) => ({
         id: product.id,
         renderItem: (
-          <div className="w-full m-auto">
+          <div className="m-auto flex w-full items-center justify-center transition">
             <AnimatedProductCard product={product} user={user} />
           </div>
         ),
@@ -31,19 +33,48 @@ export default function Carousel({ products, user }: CarouselProps) {
     });
 
   return (
-    <div className="relative mx-auto w-full max-w-4xl">
+    <div className="relative m-auto max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl  overflow-visible px-12">
       <button
         onClick={slideToPrevItem}
-        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-white p-2 shadow-md"
+        className="carousel-button-left "
       >
-        Previous
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 19.5 8.25 12l7.5-7.5"
+          />
+        </svg>
       </button>
+      <div className="overflow-hidden">
       {carouselFragment}
+      </div>
+
       <button
         onClick={slideToNextItem}
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-white p-2 shadow-md"
+        className="carousel-button-right "
       >
-        Next
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </button>
     </div>
   );
