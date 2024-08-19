@@ -25,12 +25,20 @@ model User {
 }
 
 model Product {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String?
   price       Float
   imageUrl    String?
   publicId    String?
+  catName     String?   @db.ObjectId
+  category    Category? @relation(fields: [catName], references: [id])
+}
+
+model Category {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String    @unique
+  products Product[]
 }
 
 model Account {

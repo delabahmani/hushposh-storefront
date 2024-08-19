@@ -21,9 +21,14 @@ export default async function Favorites() {
 
   return (
     <div>
+      <span>
+        <h1 className="text-center py-6 text-3xl">My Faves</h1>
+      </span>
+      <div className="grid gap-10 md:grid-cols-3">
       {products
         ?.filter((product) => user?.favoriteIds.includes(product.id) == true)
         .map((i) => <ProductCard product={i} user={user} key={i.id} />)}
+        </div>
     </div>
   );
 }
