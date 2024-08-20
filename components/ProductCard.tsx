@@ -83,8 +83,8 @@ export default function ProductCard({ product, user }: ProductProps) {
 
         <span className="mx-auto mt-5 w-[80%] border-b-[1px] border-b-offwhite border-opacity-40 shadow"></span>
      
-      <div className="my-3 flex justify-between">
-        <span className="text-lg font-bold text-black">
+      <div className="my-3 flex justify-between mx-3">
+        <span className="text-lg font-bold text-black ">
           {formatPrice(product.price)}
         </span>
         

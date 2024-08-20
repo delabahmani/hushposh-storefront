@@ -32,10 +32,15 @@ export default async function ActiveProduct({ params }: Props) {
   }
 
   return (
-    <div>
+    <div className="max-w-[1200px] mx-auto p-5">
       <h1>Product ID: {id}</h1>
-      <div>
+      <div className="flex gap-5">
+        <div className="flex-1">
         <ActiveProductCard product={product} user={user} key={product.id} />
+        </div>
+        <div className="flex-1 p-5 rounded-lg">
+          <p className="">{product.description}</p>
+        </div>
       </div>
     </div>
   );
