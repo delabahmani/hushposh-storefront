@@ -24,7 +24,7 @@ export default async function EditProduct({params}: Props) {
   }
 
   return <div>
-    <h1>Product ID: {id}</h1>
+    <h1 className="text-xs">Product ID: {id}</h1>
     <div>
       <EditProductForm product={product}/>
     </div>

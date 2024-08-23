@@ -98,9 +98,11 @@ export default function EditProductForm({ product }: CardProps) {
 
   return (
     <div>
-      <h2>Edit Product Info</h2>
+      <h1 className="py-6 text-center text-3xl font-bold text-black">
+        Edit Product Info
+      </h1>
       <form
-        className="flex flex-col gap-2 bg-slate-400 p-10"
+        className="flex flex-col gap-2 rounded-md bg-lightgray p-10"
         action=""
         onSubmit={handleSubmit}
       >
@@ -109,6 +111,7 @@ export default function EditProductForm({ product }: CardProps) {
           type="text"
           value={productInfo.name}
           name="name"
+          className="inpt"
         />
 
         <CldUploadButton
@@ -144,7 +147,7 @@ export default function EditProductForm({ product }: CardProps) {
 
         {publicId && (
           <button
-            className="mb-4 w-fit rounded-md bg-red-600 px-4 py-2 font-bold text-white transition hover:scale-110"
+            className="mb-4 w-fit rounded-md bg-coral px-4 py-2 font-bold text-offwhite transition hover:scale-110 mx-auto"
             onClick={removeImage}
           >
             Remove Image
@@ -156,6 +159,7 @@ export default function EditProductForm({ product }: CardProps) {
           type="text"
           value={productInfo.description || ""}
           name="description"
+          className="inpt"
         />
         <input
           onChange={(e) => handleChange(e.target.name, e.target.value)}
@@ -165,11 +169,13 @@ export default function EditProductForm({ product }: CardProps) {
           max={1000}
           step={0.01}
           name="price"
+          placeholder="Product Price"
           inputMode="decimal"
+          className="inpt"
         />
 
-        <div>
-          <button type="submit" className="btn">
+        <div className="flex items-center justify-center py-6">
+          <button type="submit" className="btn-secondary">
             Submit
           </button>
         </div>
