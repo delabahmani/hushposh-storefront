@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import { User } from "@/types";
+import Container from "@/components/Container";
 
 interface Product {
   id: string;
@@ -36,9 +37,9 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
+      <Container>
         <Carousel products={products} user={user} />
-      </div>
+      </Container>
     </main>
   );
 }
