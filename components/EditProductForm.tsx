@@ -15,12 +15,14 @@ type CardProps = {
     name: string;
     description: string | null;
     price: number;
+    imageUrl: string;
+    publicId: string;
   };
 };
 
 export default function EditProductForm({ product }: CardProps) {
-  const [imageUrl, setImageUrl] = useState("");
-  const [publicId, setPublicId] = useState("");
+  const [imageUrl, setImageUrl] = useState(product.imageUrl);
+  const [publicId, setPublicId] = useState(product.publicId);
   const router = useRouter();
 
   const [productInfo, setProductInfo] = useState({

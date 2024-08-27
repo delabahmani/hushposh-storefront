@@ -55,101 +55,99 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-4 md:space-x-8">
-        <div className="hidden md:items-center md:justify-between md:gap-10 md:flex ">
-          <Link
-            href="https://www.amazon.ca/s?me=AFRDVUH6BH6WA&marketplaceID=A2EUQ1WTGCTBG2"
-            target="_blank"
-            className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
-          >
-            Amazon
-          </Link>
-
-          <Link
-            href={"/products"}
-            className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
-          >
-            Products
-          </Link>
-        </div>
-
-        {status === "authenticated" ? (
-          <>
-            <div
-              ref={popupRef}
-              className={`absolute right-0 top-12 z-30 w-[250px] flex-col items-center gap-2 rounded-md bg-white p-6 text-right shadow-lg md:top-20 md:min-w-[160px] ${
-                isPopupVisibile ? "flex" : "hidden"
-              }`}
+          <div className="hidden md:flex md:items-center md:justify-between md:gap-10">
+            <Link
+              href="https://www.amazon.ca/s?me=AFRDVUH6BH6WA&marketplaceID=A2EUQ1WTGCTBG2"
+              target="_blank"
+              className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
             >
-              <h2 className="text-lg leading-none">{`welcome ${session?.user?.name}!`}</h2>
-              <h3 className="text-lg font-bold"></h3>
-              {/* <p className="font-semibold text-xs leading-none">{session?.user?.email}</p> */}
+              Amazon
+            </Link>
 
-              <Link
-                onClick={() => setIsPopupVisible(false)}
-                className="hover:underline font-semibold"
-                href={"/favorites"}
-              >
-                my favorites
-              </Link>
-              <button
-                onClick={() => signOut()}
-                className="btn-accent my-4"
-              >
-                Sign Out
-              </button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Image
-                src={session?.user?.image || ""}
-                width={36}
-                height={36}
-                alt="profile image"
-                className="w-7 cursor-pointer rounded-full md:w-10"
-                onClick={() => setIsPopupVisible((prev) => !prev)}
-              />
-            </div>
-          </>
-        ) : (
-          <div className="flex items-center">
-            <Link className="btn-primary" href={"/sign-in"}>
-              Sign In
+            <Link
+              href={"/products"}
+              className="font-semibold uppercase transition hover:scale-105 hover:border-b-[1px]"
+            >
+              Products
             </Link>
           </div>
-        )}
 
-        <div
-          className="z-20 md:hidden"
-          onClick={() => setIsActiveMobileNav(!isActiveMobileNav)}
-        >
-          <div className="flex h-6 w-[25px] flex-col items-end justify-center gap-1">
-            <motion.div
-              className="h-[2px] w-[25px] bg-coral"
-              initial={{ position: "relative" }}
-              animate={{
-                top: isActiveMobileNav ? "3px" : 0,
-                rotate: isActiveMobileNav ? 45 : 0,
-              }}
-            ></motion.div>
-            <AnimatePresence mode="popLayout">
-              {!isActiveMobileNav && (
-                <motion.div
-                  className="h-[2px] w-[25px] bg-coral"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0, position: "relative" }}
-                ></motion.div>
-              )}
-            </AnimatePresence>
-            <motion.div
-              className="h-[2px] w-[25px] bg-coral"
-              initial={{ position: "relative" }}
-              animate={{
-                bottom: isActiveMobileNav ? "3px" : 0,
-                rotate: isActiveMobileNav ? -45 : 0,
-              }}
-            ></motion.div>
+          {status === "authenticated" ? (
+            <>
+              <div
+                ref={popupRef}
+                className={`absolute right-0 top-12 z-30 w-[250px] flex-col items-center gap-2 rounded-md bg-white p-6 text-right shadow-lg md:top-20 md:min-w-[160px] ${
+                  isPopupVisibile ? "flex" : "hidden"
+                }`}
+              >
+                <h2 className="text-lg leading-none">{`welcome ${session?.user?.name}!`}</h2>
+                <h3 className="text-lg font-bold"></h3>
+                {/* <p className="font-semibold text-xs leading-none">{session?.user?.email}</p> */}
+
+                <Link
+                  onClick={() => setIsPopupVisible(false)}
+                  className="font-semibold hover:underline"
+                  href={"/favorites"}
+                >
+                  my favorites
+                </Link>
+
+                <button onClick={() => signOut()} className="btn-accent my-4">
+                  Sign Out
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Image
+                  src={session?.user?.image || ""}
+                  width={36}
+                  height={36}
+                  alt="profile image"
+                  className="w-7 cursor-pointer rounded-full md:w-10"
+                  onClick={() => setIsPopupVisible((prev) => !prev)}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="flex items-center">
+              <Link className="btn-primary" href={"/sign-in"}>
+                Sign In
+              </Link>
+            </div>
+          )}
+
+          <div
+            className="z-20 md:hidden"
+            onClick={() => setIsActiveMobileNav(!isActiveMobileNav)}
+          >
+            <div className="flex h-6 w-[25px] flex-col items-end justify-center gap-1">
+              <motion.div
+                className="h-[2px] w-[25px] bg-coral"
+                initial={{ position: "relative" }}
+                animate={{
+                  top: isActiveMobileNav ? "3px" : 0,
+                  rotate: isActiveMobileNav ? 45 : 0,
+                }}
+              ></motion.div>
+              <AnimatePresence mode="popLayout">
+                {!isActiveMobileNav && (
+                  <motion.div
+                    className="h-[2px] w-[25px] bg-coral"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, position: "relative" }}
+                  ></motion.div>
+                )}
+              </AnimatePresence>
+              <motion.div
+                className="h-[2px] w-[25px] bg-coral"
+                initial={{ position: "relative" }}
+                animate={{
+                  bottom: isActiveMobileNav ? "3px" : 0,
+                  rotate: isActiveMobileNav ? -45 : 0,
+                }}
+              ></motion.div>
+            </div>
           </div>
-        </div>
         </div>
 
         <AnimatePresence>

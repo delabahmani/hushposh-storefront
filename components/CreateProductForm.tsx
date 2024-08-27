@@ -39,12 +39,12 @@ export default function CreateProductForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ productInfo, imageUrl }),
+        body: JSON.stringify({ productInfo, imageUrl, publicId }),
       });
 
       if (res.ok) {
         toast.success("Product created successfully!");
-        router.push("/products");
+        router.push("/admin");
         router.refresh();
       } else {
         toast.error("Something went wrong!");

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import { User } from "@/types";
 import Container from "@/components/Container";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -36,9 +37,33 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       <Container>
-        <Carousel products={products} user={user} />
+        <div className="relative">
+          <Image
+            src={"/assets/hero-img2.png"}
+            width={2000}
+            height={2000}
+            className=""
+            alt="gift box"
+          />
+          <h1 className="absolute left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2 transform text-4xl font-bold uppercase text-offwhite">
+            the gift of giving
+          </h1>
+        
+
+        <div className="absolute left-1/2 top-[75%] -translate-x-1/2 -translate-y-1/2 transform">
+          <Link href="/products">
+            <button className="hover:bg-coral-dark rounded bg-coral px-4 py-2 font-bold text-white shadow-lg transition-colors">
+              Shop Now
+            </button>
+          </Link>
+        </div>
+        </div>
+
+        <div>
+          <Carousel products={products} user={user} />
+        </div>
       </Container>
     </main>
   );
