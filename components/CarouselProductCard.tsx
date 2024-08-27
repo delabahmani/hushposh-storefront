@@ -56,7 +56,7 @@ export default function CarouselProductCard({ product, user }: ProductProps) {
   }
 
   return (
-    <div className="flex h-fit w-full flex-col justify-center rounded-lg bg-offwhite px-2 pb-[2rem]">
+    <div className="flex h-full w-full flex-col justify-center rounded-lg bg-offwhite px-2 pb-[5rem]">
       <div className="px-5 pb-5">
         <h5 className="mt-2 text-lg font-semibold tracking-tight text-black">
           {product.name}
@@ -65,12 +65,11 @@ export default function CarouselProductCard({ product, user }: ProductProps) {
 
       <div>
         {product.imageUrl ? (
-          <div>
+          <div className="relative h-[250px] w-[250px]">
             <Image
               src={product.imageUrl}
               alt={product.name}
-              width={1000}
-              height={1000}
+              layout="fill"
               className="mt-9 flex w-full rounded-md object-center"
             />
           </div>

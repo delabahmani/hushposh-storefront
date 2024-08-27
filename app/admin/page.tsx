@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import AdminProductCard from "@/components/AdminProductCard";
 import Link from "next/link";
 
-export default async function () {
+export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
 
   if (session?.user?.email != process.env.ADMIN_EMAIL || !session) {

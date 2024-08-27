@@ -34,6 +34,7 @@ export default function AdminProductCard({ product }: ProductProps) {
 
         if (res.ok) {
           console.log("Product Deleted!!");
+          router.refresh();
         }
       } catch (error) {}
     }

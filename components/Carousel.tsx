@@ -20,8 +20,8 @@ export default function Carousel({ products, user }: CarouselProps) {
     useSpringCarousel({
       itemsPerSlide: 3,
       withLoop: true,
-      gutter: 26,
-      startEndGutter: 20,
+      gutter: 10,
+      startEndGutter: 10,
       items: products.map((product) => ({
         id: product.id,
         renderItem: (
@@ -33,7 +33,7 @@ export default function Carousel({ products, user }: CarouselProps) {
     });
 
   return (
-    <div className="relative m-auto max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl  overflow-visible px-12">
+    <div className="relative m-auto max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl overflow-visible ">
       <button
         onClick={slideToPrevItem}
         className="carousel-button-left "
@@ -53,10 +53,11 @@ export default function Carousel({ products, user }: CarouselProps) {
           />
         </svg>
       </button>
-      <div className="overflow-hidden">
+
+      <div className="overflow-hidden h-[500px] ">
       {carouselFragment}
       </div>
-
+      
       <button
         onClick={slideToNextItem}
         className="carousel-button-right "

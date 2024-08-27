@@ -29,9 +29,9 @@ h1 {
 }
 
 .carousel-button-left {
-  @apply top-[50%] left-0 z-10 md:flex hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md md:absolute hover:scale-110 transition ;
+  @apply -left-12 top-[50%] z-10 hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md transition hover:scale-110 md:absolute md:flex;
 }
 
 .carousel-button-right {
-  @apply top-[50%] right-0 z-10 md:flex hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md md:absolute hover:scale-110 transition ;
+  @apply -right-12 top-[50%] z-10 hidden h-10 w-10 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-btnaccent p-2 text-lg shadow-md transition hover:scale-110 md:absolute md:flex;
 }
